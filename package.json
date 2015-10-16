@@ -1,0 +1,28 @@
+{
+  "name": "generator-microservice",
+  "version": "0.0.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "robinsio/generator-microservice",
+  "author": {
+    "name": "Jon Robins",
+    "email": "jon@robins.io",
+    "url": "https://github.com/robinsio"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
