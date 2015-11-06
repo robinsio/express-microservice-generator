@@ -6,6 +6,7 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function() {
 
     var done = this.async();
+
     this.prompt([{
       type    : 'input',
       name    : 'name',
@@ -40,8 +41,16 @@ module.exports = yeoman.generators.Base.extend({
     );
 
     this.fs.copyTpl(
+      this.templatePath('README.md'),
+      this.destinationPath(this.name + '/README.md'), {
+        name: this.name
+      }
+    );
+
+    this.fs.copyTpl(
       this.templatePath('config/app.yml'),
       this.destinationPath(this.name + '/config/app.yml'), {
+        name: this.name,
         microservice: this.microservice
       }
     );

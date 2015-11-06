@@ -10,7 +10,7 @@ default:
   # Log
   #
   log:
-    path: starter-service.log
+    path: <%= name %>.log
 
   #
   # Microservice

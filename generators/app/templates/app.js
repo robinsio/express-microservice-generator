@@ -3,16 +3,21 @@
 /*
  * Dependencies
  */
+var log     = require('./lib/logger');
+var config  = require('konfig')({ path: 'config' });
 var express = require('express');
-var micro   = require('../');
+var micro   = require('express-microservice-starter');
 
 var app  = express();
 
 app.use(micro({
   discoverable: true,
-  debug: true
+  controllersPath: 'lib/controllers',
+  monitorsPath: 'lib/monitors'
 }));
 
-app.listen(8000, function onListen() {
-  console.log('example app initialised and serving at the following root: http://localhost:8000/<%= microservice %>');
+app.listen(process.env.PORT || config.app.server.port, function onListen() {
+  log.info('Initialised ' + config.app.microservice.server.name);
 });
+
+module.exports = app;
