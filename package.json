@@ -1,10 +1,10 @@
 {
   "name": "generator-microservice",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "robinsio/generator-microservice",
+  "repository": "robinsio/express-microservice-generator",
   "author": {
     "name": "Jon Robins",
     "email": "jon@robins.io",

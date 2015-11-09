@@ -10,15 +10,21 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt([{
       type    : 'input',
       name    : 'name',
-      message : 'Your project name',
+      message : 'Your project name?',
     },{
       type    : 'input',
       name    : 'microservice',
-      message : 'Your microservice name',
+      message : 'Your microservice name?',
+    },{
+      type    : 'confirm',
+      name    : 'entitlements',
+      message : 'Enable entitlements?',
+      default : true
     }], function (answers) {
 
       this.name = answers.name;
       this.microservice = answers.microservice;
+      this.entitlements = answers.entitlements;
 
       done();
 
@@ -54,6 +60,13 @@ module.exports = yeoman.generators.Base.extend({
         microservice: this.microservice
       }
     );
+
+    if(this.entitlements){
+      this.fs.copy(
+        this.templatePath('config/entitlements.json'),
+        this.destinationPath(this.name + '/config/entitlements.json')
+      );
+    }
 
     this.fs.copyTpl(
       this.templatePath('app.js'),
