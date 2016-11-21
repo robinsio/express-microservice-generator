@@ -3,19 +3,19 @@
   "version": "0.0.0",
   "main": "app.js",
   "dependencies": {
-    "bunyan": "^1.5.1",
-    "express": "^4.13.3",
-    "express-microservice-starter": "^0.5.9",
-    "request-service-discovery": "0.0.1",
+    "bunyan": "^1.8.5",
+    "express": "^4.14.0",
+    "express-microservice-starter": "^0.5.27",
+    "request-service-discovery": "^1.0.2",
     "konfig": "^0.2.1"
   },
   "devDependencies": {
     "supertest-as-promised": "^1.0.0",
     "chai": "^1.10.0",
-    "mocha": "^2.1.0",
+    "mocha": "^2.5.3",
     "mocha-bamboo-reporter": "*",
     "supertest": "^0.15.0",
-    "sinon": "^1.15.4",
+    "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
   }
 }
