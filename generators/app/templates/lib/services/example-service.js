@@ -2,8 +2,11 @@
 
 var RequestServiceDiscovery = require('request-service-discovery');
 
-var config = require('konfig')({path: 'config'});
-var log    = require('../logger');
+var config                  = require('konfig')({path: 'config'});
+var log                     = require('../logger');
+
+// Errors
+var ResourceNotFoundError   = require('../errors/resource-not-found');
 
 function ExampleService() {
 
@@ -41,4 +44,11 @@ ExampleService.prototype.getExamples = function(options, callback) {
   // });
 };
 
-var req = exports = module.exports = new ExampleService;
+ExampleService.prototype.throwError = function(callback) {
+
+  log.info('ExampleService::throwError Called!');
+  return callback(new ResourceNotFoundError("Example Error thrown by Service"));
+};
+
+// Returns an instance of the service
+module.exports = new ExampleService;

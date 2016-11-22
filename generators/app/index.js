@@ -1,7 +1,7 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var generators = require('yeoman-generator');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = generators.Base.extend({
 
   prompting: function() {
 
@@ -14,13 +14,13 @@ module.exports = yeoman.generators.Base.extend({
     },{
       type    : 'input',
       name    : 'microservice',
-      message : 'Your microservice name?',
+      message : 'Your microservice name (hint: type/domain/application/version)?',
     },{
       type    : 'confirm',
       name    : 'entitlements',
       message : 'Enable entitlements?',
       default : true
-    }], function (answers) {
+    }]).then(function (answers) {
 
       this.name = answers.name;
       this.microservice = answers.microservice;
@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copy(
       this.templatePath('_gitignore'),
       this.destinationPath(this.name + '/.gitignore')
-    )
+    );
 
     this.fs.copyTpl(
       this.templatePath('_package.json'),
@@ -78,6 +78,11 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copy(
       this.templatePath('lib'),
       this.destinationPath(this.name + '/lib')
+    );
+
+    this.fs.copy(
+        this.templatePath('test'),
+        this.destinationPath(this.name + '/test')
     );
   }
 });
