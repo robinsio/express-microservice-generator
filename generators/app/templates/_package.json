@@ -10,7 +10,7 @@
     "bunyan": "^1.8.5",
     "custom-error-generator": "^7.0.0",
     "express": "^4.14.0",
-    "express-microservice-starter": "^0.5.27",
+    "express-microservice-starter": "^0.5.28",
     "request-service-discovery": "^1.0.2",
     "konfig": "^0.2.1"
   },
