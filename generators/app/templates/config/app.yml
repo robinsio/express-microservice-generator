@@ -4,13 +4,13 @@ default:
   # Basic
   #
   server:
-    port: 8000
+    port: 8001
 
   #
   # Log
   #
   log:
-    path: <%= name %>.log
+    # path: <%= name %>.log
 
   #
   # Microservice

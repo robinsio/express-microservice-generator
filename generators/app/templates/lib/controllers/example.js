@@ -1,41 +1,35 @@
 'use strict';
 
-var log     = require('../logger');
-var service = require('../services/example-service');
+const log     = require('../logger');
+const service = require('../services/example-service');
 
 /**
  * Initialise Items endpoints
  *
  * @param router
  */
-module.exports = function(router) {
+module.exports = (router) => {
 
   /**
    * Example Collection
    */
-  router.get('/', function(req, res, next) {
+  router.get('/', (req, res, next) => {
 
-    service.getExamples({}, function(err, items) {
-      if (err) return next(err);
+    service.getExamples()
+      .then((items) => {
 
-      log.info('Correlation identifier generated', { correlationId: res.locals.correlationId });
+        log.info('Correlation identifier generated', { correlationId: res.locals.correlationId });
 
-      res.cacheControl({ maxAge: 10});
-      res.json(items);
-    });
+        res.cacheControl({ maxAge: 10});
+        res.json(items);
+      })
+      .catch(next);
   });
 
   /**
    * Example Error handling
    */
-  router.get('/error', function(req, res, next) {
-
-    service.throwError(function(err) {
-      if (err) return next(err);
-
-      // Example won't hit this...
-      res.sendStatus(200);
-    });
+  router.get('/error', (req, res, next) => {
+    service.throwError().catch(next);
   });
-
 };

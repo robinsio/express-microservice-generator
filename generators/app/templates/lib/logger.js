@@ -1,9 +1,9 @@
 'use strict';
 
-var bunyan = require('bunyan');
-var config = require('konfig')({ path: 'config' });
+const bunyan = require('bunyan');
+const config = require('konfig')({ path: 'config' });
 
-var options = { name: config.app.microservice.server.name || 'microservice' };
+const options = { name: config.app.microservice.server.name || 'microservice' };
 
 if (config.app.log && config.app.log.path) {
   options.streams = [
@@ -11,6 +11,4 @@ if (config.app.log && config.app.log.path) {
   ];
 }
 
-var log = bunyan.createLogger(options);
-
-module.exports = log;
+module.exports = bunyan.createLogger(options);

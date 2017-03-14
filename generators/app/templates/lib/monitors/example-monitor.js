@@ -2,16 +2,14 @@
 
 /**
  * Example Monitor.
- *
- * @public
  */
 module.exports = {
   name: "example",
-  report: function() {
+  report: () => {
 
     // Example healthy status
-    var status = 'CONNECTED';
-    var connectionString = 'uri://example/'
+    let status = 'CONNECTED';
+    let connectionString = 'uri://example/';
 
     return {
       status: status === "CONNECTED" ? "UP" : "DOWN",

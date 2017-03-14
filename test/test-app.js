@@ -6,6 +6,7 @@ var helpers = require('yeoman-generator').test;
 var os = require('os');
 
 describe('microservice:app', function () {
+
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({ skipInstall: true })

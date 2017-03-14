@@ -1,19 +1,23 @@
 'use strict';
 
-var mocha   = require('mocha');
-var should  = require('chai').should();
-var sinon   = require('sinon');
-var request = require('supertest-as-promised');
+const mocha    = require('mocha');
+const should   = require('chai').should();
+const sinon    = require('sinon');
+const promised = require('sinon-as-promised');
+const request  = require('supertest-as-promised');
 
-var app     = require('../../app');
-var config  = require('konfig')({ path: 'config' });
-var service = require('../../lib/services/example-service');
+const app     = require('../../app');
+const config  = require('konfig')({ path: 'config' });
+const service = require('../../lib/services/example-service');
 
 describe('controllers/example', function() {
-  var sandbox, getExamplesStub;
 
-  var basePath = config.app.microservice.server.name;
-  var examples = [{
+  let sandbox;
+  let mock;
+
+  let basePath = config.app.microservice.server.name;
+
+  let examples = [{
     "id": 1,
     "name": "movies"
   }, {
@@ -23,8 +27,7 @@ describe('controllers/example', function() {
 
   beforeEach(function(done) {
     sandbox = sinon.sandbox.create();
-    getExamplesStub = sandbox.stub(service, 'getExamples');
-
+    mock    = sandbox.mock(service);
     done();
   });
 
@@ -34,8 +37,8 @@ describe('controllers/example', function() {
   });
 
   it('should return a list of Examples when GET /example is requested', function(done) {
-    getExamplesStub
-        .yields(null, examples);
+
+    mock.expects('getExamples').resolves(examples);
 
     request(app)
         .get('/' + basePath + '/example')
@@ -47,5 +50,15 @@ describe('controllers/example', function() {
           res.body[1].name.should.equal('shows');
         })
         .expect(200, done);
+  });
+
+  it('should return a Error when GET /example/error is requested', function(done) {
+
+    mock.expects('throwError').rejects('bad');
+
+    request(app)
+      .get('/' + basePath + '/example/error')
+      .set('Accept', 'application/json')
+      .expect(500, done);
   });
 });
