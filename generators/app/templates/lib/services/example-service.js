@@ -1,54 +1,57 @@
 'use strict';
 
-var RequestServiceDiscovery = require('request-service-discovery');
+const RequestServiceDiscovery = require('request-service-discovery');
 
-var config                  = require('konfig')({path: 'config'});
-var log                     = require('../logger');
+const config = require('konfig')({path: 'config'});
 
-// Errors
-var ResourceNotFoundError   = require('../errors/resource-not-found');
+const ResourceNotFoundError = require('../errors/resource-not-found');
 
-function ExampleService() {
+class ExampleService{
 
-  /*
-   * Remove comment below to enable a zookeeper connected client.
-   */
+  constructor(){
 
-  // this.client = new RequestServiceDiscovery({
-  //     connectionString: config.app.zookeeper.connectionString,
-  //     basePath: 'services',
-  //     serviceName: 'my/other/service/v1'
-  //   });
-};
+    /*
+     * Remove comment below to enable a zookeeper connected client.
+     */
 
-ExampleService.prototype.getExamples = function(options, callback) {
+    // this.client = new RequestServiceDiscovery({
+    //   connectionString: config.app.zookeeper.connectionString,
+    //   basePath: 'services',
+    //   serviceName: 'my/other/service/v1'
+    // });
+  }
 
-  log.info('ExampleService::getExamples Called!');
+  getExamples(){
+   return new Promise( (resolve, reject) =>{
 
-  var items = [{
-    id: 1,
-    name: 'movies'
-  }, {
-    id: 2,
-    name: 'shows'
-  }];
+     let items = [{
+       id: 1,
+       name: 'movies'
+     }, {
+       id: 2,
+       name: 'shows'
+     }];
 
-  callback(null, items);
+     resolve(items);
 
-  /*
-   * Remove comment below to use zookeeper connected client.
-   */
+     /*
+      * Remove comment below to use zookeeper connected client.
+      */
 
-  //  this.client.get('example', null, function(err, item) {
-  //   callback(err, item);
-  // });
-};
+      // this.client.get('example', null, (err, item) => {
+      //   if(err) reject(err);
+      //
+      //   resolve(item);
+      // });
+    });
+  }
 
-ExampleService.prototype.throwError = function(callback) {
+  throwError(){
+    return new Promise((resolve, reject) => {
+      reject(new ResourceNotFoundError("Example Error thrown by Service"));
+    })
+  }
+}
 
-  log.info('ExampleService::throwError Called!');
-  return callback(new ResourceNotFoundError("Example Error thrown by Service"));
-};
+module.exports = new ExampleService();
 
-// Returns an instance of the service
-module.exports = new ExampleService;

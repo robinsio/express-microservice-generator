@@ -1,29 +1,27 @@
 'use strict';
 
-/*
- * Dependencies
- */
-var config       = require('konfig')({ path: 'config' });
-var errorHandler = require('./lib/express/error-handler-middleware.js');
-var express      = require('express');
-var log          = require('./lib/logger');
-var micro        = require('express-microservice-starter');
+const config       = require('konfig')({ path: 'config' });
+const express      = require('express');
+const micro        = require('express-microservice-starter');
 
-var app  = express();
+const log = require('./lib/logger');
 
-app.use(micro({
+const PORT = process.env.PORT || config.app.server.port;
+const SERVICE = config.app.microservice.server.name;
+
+const options = {
   discoverable: true,
   controllersPath: 'lib/controllers',
   monitorsPath: 'lib/monitors',
-  correlationHeaderName: 'X-Unity-CorrelationID',
-  debug: false
-}));
+  correlationHeaderName: 'X-Unity-CorrelationID'
+};
 
-// Use the Error handling middleware
-app.use(errorHandler());
+const app  = express();
 
-app.listen(process.env.PORT || config.app.server.port, function onListen() {
-  log.info('Initialised ' + config.app.microservice.server.name);
-});
+app.use(micro(options));
+app.use(require('./lib/express/resource-not-found-middleware'));
+app.use(require('./lib/express/error-handler-middleware'));
+
+app.listen(PORT, () => log.info('Initialised [' + SERVICE + '], Port: [' + PORT + ']'));
 
 module.exports = app;

@@ -14,7 +14,7 @@ module.exports = function(router) {
    */
   router.get('/', function(req, res, next) {
 
-    service.getExamples({}, function(err, items) {
+    ExampleService.getExamples({}, function(err, items) {
       if (err) return next(err);
 
       res.cacheControl({ maxAge: 10});

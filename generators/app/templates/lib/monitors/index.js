@@ -1,12 +1,10 @@
 'use strict';
 
-/*
- * Dependencies
- */
-var VitalSigns = require('vitalsigns');
+const VitalSigns = require('vitalsigns');
 
-module.exports = function () {
-  var vitals = new VitalSigns();
+module.exports = () => {
+
+  let vitals = new VitalSigns();
 
   // Add a custom monitor
   vitals.monitor(require('./example-monitor'));

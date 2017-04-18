@@ -39,6 +39,11 @@ module.exports = generators.Base.extend({
       this.destinationPath(this.name + '/.gitignore')
     );
 
+    this.fs.copy(
+      this.templatePath('_jshintrc'),
+      this.destinationPath(this.name + '/.jshintrc')
+    );
+
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath(this.name + '/package.json'), {
