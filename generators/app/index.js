@@ -40,8 +40,8 @@ module.exports = generators.Base.extend({
     );
 
     this.fs.copy(
-      this.templatePath('_jshintrc'),
-      this.destinationPath(this.name + '/.jshintrc')
+      this.templatePath('_eslintrc'),
+      this.destinationPath(this.name + '/.eslintrc')
     );
 
     this.fs.copyTpl(
