@@ -20,11 +20,18 @@ module.exports = generators.Base.extend({
       name    : 'entitlements',
       message : 'Enable entitlements?',
       default : true
+    },{
+      type    : 'confirm',
+      name    : 'nvmrc',
+      message : 'Enable .nvrmc file for managing Project Node version (default: v8.9.4)?',
+      default : true
+
     }]).then(function (answers) {
 
       this.name = answers.name;
       this.microservice = answers.microservice;
       this.entitlements = answers.entitlements;
+      this.nvmrc = answers.nvmrc;
 
       done();
 
@@ -50,6 +57,13 @@ module.exports = generators.Base.extend({
         name: this.name
       }
     );
+
+    if (this.nvmrc){
+      this.fs.copy(
+          this.templatePath('_nvmrc'),
+          this.destinationPath(this.name + '/.nvmrc')
+      );
+    }
 
     this.fs.copyTpl(
       this.templatePath('README.md'),
