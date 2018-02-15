@@ -12,14 +12,14 @@ npm install -g yo
 ### Install Microservice Generator
 
 ```bash
-npm install -g generator-microservice
+npm install -g @press-association/microservice
 ```
 ### Generate Project
 
 Run the following command and follow the prompts
 
 ```bash
-yo microservice
+yo @press-association/microservice
 ```
 
 ### Generate controller
