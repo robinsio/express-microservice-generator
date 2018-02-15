@@ -27,7 +27,7 @@ $ npm install
 
 ## Tests
 
-Tests are run using the [mocha] framework.
+Tests are run using the [mocha] framework and include a coverage check as default.
 
 Run tests:
 

@@ -5,12 +5,24 @@
   "scripts": {
     "start": "node app.js",
     "lint": "node ./node_modules/eslint/bin/eslint.js *.js",
-    "test": "./node_modules/mocha/bin/mocha test"
+    "test": "node ./node_modules/nyc/bin/nyc.js --all mocha"
   },
   "dependencies": {
     "custom-error-generator": "7.0.0",
     "express-microservice-starter": "0.6.2",
     "request-service-discovery": "1.0.7"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 80,
+    "branches": 80,
+    "reporter": [
+      "lcov",
+      "text",
+      "cobertura"
+    ]
   },
   "devDependencies": {
     "chai": "4.1.2",
@@ -22,6 +34,7 @@
     "eslint-plugin-standard": "3.0.1",
     "mocha": "4.1.0",
     "mocha-bamboo-reporter": "1.1.1",
+    "nyc": "11.4.1",
     "supertest": "3.0.0",
     "sinon": "4.1.3",
     "sinon-chai": "2.14.0"
