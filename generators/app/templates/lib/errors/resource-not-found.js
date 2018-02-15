@@ -1,7 +1,12 @@
-'use strict';
+module.exports = class ResourceNotFoundError extends Error {
+  constructor(message, causedBy, error) {
+    super(message);
 
-module.exports = require('custom-error-generator')('ResourceNotFoundError', null, function(message, causedBy, error){
-  this.message = message;
-  this.causedBy = causedBy;
-  this.error = error;
-});
+    // Capturing stack trace, excluding constructor call from it.
+    Error.captureStackTrace(this, this.constructor);
+
+    this.name = this.constructor.name;
+    this.causedBy = causedBy;
+    this.error = error;
+  }
+};

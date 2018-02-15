@@ -4,7 +4,7 @@ const log     = require('../logger');
 const service = require('../services/example-service');
 
 /**
- * Initialise Items endpoints
+ * Initialise endpoints
  *
  * @param router
  */
@@ -18,7 +18,7 @@ module.exports = (router) => {
     service.getExamples()
       .then((items) => {
 
-        log.info('Correlation identifier generated', { correlationId: res.locals.correlationId });
+        req.log.info('getExamples() called');
 
         res.cacheControl({ maxAge: 10});
         res.json(items);

@@ -16,7 +16,7 @@ module.exports = (err, req, res, next) => {
 
     // Default Error handling...
     default:
-      log.error(err, 'Uncaught Error');
+      req.log.error(err, 'Uncaught Error');
       res.status(500).json({name: err.name, message: err.message, errors: err.errors});
       break;
   }
