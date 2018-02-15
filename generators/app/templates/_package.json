@@ -8,7 +8,6 @@
     "test": "node ./node_modules/nyc/bin/nyc.js --all mocha"
   },
   "dependencies": {
-    "custom-error-generator": "7.0.0",
     "express-microservice-starter": "0.6.7",
     "request-service-discovery": "1.0.7"
   },
