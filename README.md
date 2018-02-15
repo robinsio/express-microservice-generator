@@ -12,7 +12,7 @@ npm install -g yo
 ### Install Microservice Generator
 
 ```bash
-npm install -g @press-association/microservice
+npm install -g @press-association/generator-microservice
 ```
 ### Generate Project
 
