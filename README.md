@@ -26,5 +26,5 @@ yo @press-association/microservice
 
 ```bash
 cd project
-yo microservice:controller beard
+yo @press-association/microservice:controller beard
 ```

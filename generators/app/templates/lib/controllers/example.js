@@ -4,7 +4,7 @@ const log     = require('../logger');
 const service = require('../services/example-service');
 
 /**
- * Initialise Items endpoints
+ * Initialise endpoints
  *
  * @param router
  */
