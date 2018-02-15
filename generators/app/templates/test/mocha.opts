@@ -1,1 +1,1 @@
---recursive
+--recursive --exit --require=env-test

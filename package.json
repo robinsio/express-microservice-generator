@@ -1,17 +1,17 @@
 {
-  "name": "generator-microservice",
-  "version": "0.1.1",
+  "name": "@press-association/generator-microservice",
+  "version": "1.0.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "robinsio/express-microservice-generator",
+  "repository": "pressassociation/express-microservice-generator",
   "author": {
     "name": "Jon Robins",
     "email": "jon@robins.io",
     "url": "https://github.com/robinsio"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "files": [
     "generators"
@@ -23,6 +23,6 @@
     "yeoman-generator": "^0.24.1"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "5.0.1"
   }
 }
