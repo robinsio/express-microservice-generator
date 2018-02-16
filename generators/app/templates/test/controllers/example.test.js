@@ -88,5 +88,4 @@ describe('controllers/example', () => {
       .set('Accept', 'application/json')
       .expect(500);
   });
-
 });

@@ -1,7 +1,5 @@
 'use strict';
 
-const log = require('../logger');
-
 /**
  * Middleware to handler specific application errors.
  */

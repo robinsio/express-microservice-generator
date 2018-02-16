@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "lint": "node ./node_modules/eslint/bin/eslint.js *.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js *.js lib test",
     "test": "node ./node_modules/nyc/bin/nyc.js --all mocha"
   },
   "dependencies": {
