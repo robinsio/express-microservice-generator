@@ -1,1 +1,14 @@
+# Node build stuff
 node_modules/
+.nyc_output/
+coverage/
+
+test-results.xml
+
+# Logs
+logs
+*.log*
+npm-debug.log*
+
+# IDEA project related
+.idea/

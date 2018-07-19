@@ -1,8 +1,8 @@
 'use strict';
 
-const config       = require('konfig')({ path: 'config' });
-const express      = require('express');
-const micro        = require('express-microservice-starter');
+const config = require('konfig')({path: 'config'});
+const express = require('express');
+const micro = require('express-microservice-starter');
 
 const log = require('./lib/logger');
 
@@ -16,12 +16,14 @@ const options = {
   correlationHeaderName: 'X-Unity-CorrelationID'
 };
 
-const app  = express();
+const app = express();
 
 app.use(micro(options));
 app.use(require('./lib/express/resource-not-found-middleware'));
 app.use(require('./lib/express/error-handler-middleware'));
 
-app.listen(PORT, () => log.info('Initialised [' + SERVICE + '], Port: [' + PORT + ']'));
+const listener = app.listen(PORT, () => {
+  log.info('Initialised [' + SERVICE + '], Port: [' + listener.address().port + ']');
+});
 
 module.exports = app;

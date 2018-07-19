@@ -1,24 +1,24 @@
 'use strict';
 
-var service = require('../services/example-service');
+const service = require('../services/example-service');
 
 /**
- * Initialise endpoint
+ * Initialise endpoints
  *
  * @param router
  */
-module.exports = function(router) {
-
+module.exports = (router) => {
   /**
    * Example Collection
    */
-  router.get('/', function(req, res, next) {
+  router.get('/', (req, res, next) => {
+    service.getExamples()
+      .then((items) => {
+        req.log.info('getExamples() called');
 
-    ExampleService.getExamples({}, function(err, items) {
-      if (err) return next(err);
-
-      res.cacheControl({ maxAge: 10});
-      res.json(items);
-    });
+        res.cacheControl({ maxAge: 10 });
+        res.json(items);
+      })
+      .catch(next);
   });
 };
